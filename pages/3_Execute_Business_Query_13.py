@@ -2,6 +2,7 @@ import streamlit as st
 from functions.get_data import get_query_data
 from functions.get_query import read_query
 
+st.set_page_config(layout="wide", page_title="INFO7374: Algorithmic Marketing")
 # business query 3 logic
 # ---------------------------------------------------------------
 try:
@@ -12,7 +13,7 @@ try:
         "their household demographics, sales price and different combinations of state and sales profit for a "
         "given year.")
 
-    bs_query_3 = read_query(f"queries/query_2.sql")
+    bs_query_3 = read_query(f"queries/query_3.sql")
     state_param = st.multiselect("Choose 9 states:",
                                  options=['AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL',
                                           'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA',
@@ -58,7 +59,7 @@ try:
     if button_clicked:
         df_3 = get_query_data(bs_query_3)
         st.markdown(f"YAY! Here's your data :tada::sunglasses:")
-        st.write(df_3)
+        st.table(df_3)
     st.markdown("---")
 except IndexError as ie:
     st.markdown(f">:red[Please select required number of options to generate a query. Error: {ie}"

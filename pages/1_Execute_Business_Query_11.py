@@ -2,10 +2,9 @@ import streamlit as st
 from functions.get_data import get_query_data
 from functions.get_query import read_query
 
-
+st.set_page_config(layout="wide", page_title="INFO7374: Algorithmic Marketing")
 # business query 1 logic
 # ---------------------------------------------------------------
-
 try:
     st.subheader("Business Query 1:")
     st.markdown("Find customers whose increase in spending was large over the web than in stores this year compared to "
@@ -21,7 +20,7 @@ try:
     if button_clicked:
         df_1 = get_query_data(bs_query_1)
         st.markdown(f">YAY! Here's your data :tada::sunglasses:", unsafe_allow_html=True)
-        st.write(df_1)
+        st.table(df_1)
     st.markdown("---")
 
 except Exception as e:

@@ -3,6 +3,7 @@ import streamlit as st
 from functions.get_data import get_query_data
 from functions.get_query import read_query
 
+st.set_page_config(layout="wide", page_title="INFO7374: Algorithmic Marketing")
 # business query 2 logic
 # ---------------------------------------------------------------
 try:
@@ -24,12 +25,12 @@ try:
                   .replace("{category_param_3}", category_param[2]))
     bs_query_2 = bs_query_2.replace("{date_param}", date_param.strftime("%Y-%m-%d"))
     with st.expander("**Show query**"):
-        st.write(bs_query_2)
+        st.code(bs_query_2)
     button_clicked = st.button('Execute', key=1003)
     if button_clicked:
         df_2 = get_query_data(bs_query_2)
         st.markdown(f">YAY! Here's your data :tada::sunglasses:", unsafe_allow_html=True)
-        st.write(df_2)
+        st.table(df_2)
     st.markdown("---")
 
 except Exception as e:

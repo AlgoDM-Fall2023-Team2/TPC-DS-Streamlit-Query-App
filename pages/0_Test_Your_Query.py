@@ -3,6 +3,7 @@ from functions.get_data import get_query_data
 
 # test your query
 # ---------------------------------------------------------------
+st.set_page_config(layout="wide", page_title="INFO7374: Algorithmic Marketing")
 try:
     query_input = st.text_area("Enter your query")
 

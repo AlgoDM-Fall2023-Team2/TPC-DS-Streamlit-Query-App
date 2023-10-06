@@ -132,8 +132,8 @@ from
           date_dim
         where
           d_year = {year_param} + 1
-          and d_moy = {day_param}
-          and d_dom = 28
+          and d_moy = {month_param}
+          and d_dom = {day_param}
       )
     group by
       i_brand_id,
@@ -175,8 +175,8 @@ from
           date_dim
         where
           d_year = {year_param}
-          and d_moy = {day_param}
-          and d_dom = 28
+          and d_moy = {month_param}
+          and d_dom = {day_param}
       )
     group by
       i_brand_id,
