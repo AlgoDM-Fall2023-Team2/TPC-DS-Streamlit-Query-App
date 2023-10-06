@@ -63,7 +63,6 @@ namespace arrow {
   ACTION(SparseUnion);                          \
   ACTION(DenseUnion);                           \
   ACTION(Dictionary);                           \
-  ACTION(RunEndEncoded);                        \
   ACTION(Extension)
 
 }  // namespace arrow
