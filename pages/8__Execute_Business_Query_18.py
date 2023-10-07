@@ -76,7 +76,7 @@ try:
         st.table(df_1)
     st.markdown("---")
 except IndexError as ie:
-    st.markdown(f":red[> Please select required number of options to generate a query. Error: {ie} :fearful:]",
+    st.markdown(f">:red[Please select required number of options to generate a query. Error: {ie} :fearful:]",
                 unsafe_allow_html=True)
 except BaseException as e:
     st.markdown(f">{e}")
