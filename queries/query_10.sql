@@ -16,11 +16,11 @@ where
   cs_item_sk = i_item_sk
   and i_category in ('{category_param_1}', '{category_param_2}', '{category_param_3}')
   and cs_sold_date_sk = d_date_sk
-  and d_date between cast('{category_param_1}' as date)
+  and d_date between cast('{date_param}' as date)
   and dateadd(
     day,
     30,
-    to_date('{category_param_1}')
+    to_date('{date_param}')
   )
 group by
   i_item_id,
