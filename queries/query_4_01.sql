@@ -15,8 +15,8 @@ with cross_items as (
       where
         ss_item_sk = iss.i_item_sk
         and ss_sold_date_sk = d1.d_date_sk
-        and d1.d_year between 1998
-        AND 1998 + 2
+        and d1.d_year between {year_param}
+        AND {year_param} + 2
       intersect
       select
         ics.i_brand_id,
@@ -29,8 +29,8 @@ with cross_items as (
       where
         cs_item_sk = ics.i_item_sk
         and cs_sold_date_sk = d2.d_date_sk
-        and d2.d_year between 1998
-        AND 1998 + 2
+        and d2.d_year between {year_param}
+        AND {year_param} + 2
       intersect
       select
         iws.i_brand_id,
@@ -43,8 +43,8 @@ with cross_items as (
       where
         ws_item_sk = iws.i_item_sk
         and ws_sold_date_sk = d3.d_date_sk
-        and d3.d_year between 1998
-        AND 1998 + 2
+        and d3.d_year between {year_param}
+        AND {year_param} + 2
     )
   where
     i_brand_id = brand_id
@@ -64,8 +64,8 @@ avg_sales as (
         date_dim
       where
         ss_sold_date_sk = d_date_sk
-        and d_year between 1998
-        and 1998 + 2
+        and d_year between {year_param}
+        and {year_param} + 2
       union all
       select
         cs_quantity quantity,
@@ -75,8 +75,8 @@ avg_sales as (
         date_dim
       where
         cs_sold_date_sk = d_date_sk
-        and d_year between 1998
-        and 1998 + 2
+        and d_year between {year_param}
+        and {year_param} + 2
       union all
       select
         ws_quantity quantity,
@@ -86,8 +86,8 @@ avg_sales as (
         date_dim
       where
         ws_sold_date_sk = d_date_sk
-        and d_year between 1998
-        and 1998 + 2
+        and d_year between {year_param}
+        and {year_param} + 2
     ) x
 )
 select
@@ -119,8 +119,8 @@ from
       )
       and ss_item_sk = i_item_sk
       and ss_sold_date_sk = d_date_sk
-      and d_year = 1998 + 2
-      and d_moy = 11
+      and d_year = {year_param} + 2
+      and d_moy = {month_param}
     group by
       i_brand_id,
       i_class_id,
@@ -153,8 +153,8 @@ from
       )
       and cs_item_sk = i_item_sk
       and cs_sold_date_sk = d_date_sk
-      and d_year = 1998 + 2
-      and d_moy = 11
+      and d_year = {year_param} + 2
+      and d_moy = {month_param}
     group by
       i_brand_id,
       i_class_id,
@@ -187,8 +187,8 @@ from
       )
       and ws_item_sk = i_item_sk
       and ws_sold_date_sk = d_date_sk
-      and d_year = 1998 + 2
-      and d_moy = 11
+      and d_year = {year_param} + 2
+      and d_moy = {month_param}
     group by
       i_brand_id,
       i_class_id,

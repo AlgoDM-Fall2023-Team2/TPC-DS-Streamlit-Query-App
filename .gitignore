@@ -1,2 +1,9 @@
 # created by virtualenv automatically
 .streamlit/
+venv/
+funtions/__pycache__/
+access_token.txt
+=======
+.streamlit/secrets.toml
+*.toml
+logs.log
