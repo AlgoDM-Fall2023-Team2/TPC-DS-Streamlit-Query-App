@@ -43,7 +43,7 @@ try:
     if button_clicked:
         df_1 = get_query_data(bs_query_4_1)
         st.markdown(f">YAY! Here's your data :tada::sunglasses:", unsafe_allow_html=True)
-        st.write(df_1)
+        st.table(df_1)
     st.markdown("---")
 
 except Exception as e:
