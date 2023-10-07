@@ -21,7 +21,7 @@ try:
 
     manager_param = st.slider("Choose year:", min_value=1, max_value=100, value=50, step=1)
 
-    bs_query_9= read_query(f"queries/query_9.sql").replace("{year_param}", str(year_param))
+    bs_query_9 = read_query(f"queries/query_9.sql").replace("{year_param}", str(year_param))
 
     bs_query_9 = (bs_query_9.replace("{month_param}", str(month_param)))
 
