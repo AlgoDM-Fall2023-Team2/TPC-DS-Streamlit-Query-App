@@ -72,7 +72,7 @@ try:
     button_clicked = st.button('Execute', key=1002)
     if button_clicked:
         df_1 = get_query_data(bs_query_8)
-        st.write(df_1)
+        st.table(df_1)
     st.markdown("---")
 except IndexError as ie:
     st.markdown(f":red[> Please select required number of options to generate a query. Error: {ie} :fearful:]",

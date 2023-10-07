@@ -33,6 +33,11 @@ try:
         st.table(df_2)
     st.markdown("---")
 
+except IndexError as ie:
+    st.markdown(f">:red[Please select required number of options to generate a query. Error: {ie}"
+                ":shocked_face_with_exploding_head::fearful:]",
+                unsafe_allow_html=True)
+
 except Exception as e:
     st.markdown(f">:red[An error occurred. Error: {e} :shocked_face_with_exploding_head::fearful:]",
                 unsafe_allow_html=True)

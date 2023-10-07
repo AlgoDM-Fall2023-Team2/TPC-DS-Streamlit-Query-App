@@ -20,7 +20,7 @@ with st.expander("**Show query**"):
 button_clicked = st.button('Execute', key=1002)
 if button_clicked:
     df_7 = get_query_data(bs_query_7)
-    st.write(df_7)
+    st.table(df_7)
 st.markdown("---")
 
 
