@@ -1,5 +1,0 @@
-# created by virtualenv automatically
-.streamlit/secrets.toml
-*.toml
-logs.log
-venv
