@@ -24,9 +24,10 @@ def get_query_data(query) -> pd.DataFrame:
         )
     )
     logging.info(f"{datetime.datetime.now()}: Connecting engine...")
-    connection = engine.connect()
+    engine.connect()
     logging.info(f"{datetime.datetime.now()}: Executing query...")
     df = pd.read_sql_query(query, engine)
     logging.info(f"{datetime.datetime.now()}: Dataframe retrieved..")
+    engine.dispose()
     return df
 
