@@ -35,4 +35,4 @@ ORDER BY
   i_item_desc,
   revenueratio
 limit
-  5;
+  100;

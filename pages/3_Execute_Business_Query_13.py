@@ -1,17 +1,19 @@
-import datetime
 import streamlit as st
 from functions.get_data import get_query_data
 from functions.get_query import read_query
 
-
+st.set_page_config(layout="wide", page_title="INFO7374: Algorithmic Marketing")
 # business query 3 logic
 # ---------------------------------------------------------------
-st.subheader("Business Query 3:")
-st.markdown("Calculate the average sales quantity, average sales price, average wholesale cost, total wholesale cost "
-            "for store sales of different customer types (e.g., based on marital status, education status) including "
-            "their household demographics, sales price and different combinations of state and sales profit for a "
-            "given year.")
 try:
+    st.subheader("Business Query 3:")
+    st.markdown(
+        "Calculate the average sales quantity, average sales price, average wholesale cost, total wholesale cost "
+        "for store sales of different customer types (e.g., based on marital status, education status) including "
+        "their household demographics, sales price and different combinations of state and sales profit for a "
+        "given year.")
+
+    bs_query_3 = read_query(f"queries/query_3.sql")
     state_param = st.multiselect("Choose 9 states:",
                                  options=['AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL',
                                           'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA',
@@ -29,9 +31,6 @@ try:
     marital_param = st.multiselect("Choose 3 education levels:", options=['M', 'S', 'D', 'W', 'U'],
                                    default=['M', 'S', 'W'],
                                    max_selections=3)
-
-    bs_query_3 = read_query(f"queries/query_2.sql")
-
     # replacing state_param
     bs_query_3 = (bs_query_3.replace("{state_param_1}", state_param[0])
                   .replace("{state_param_2}", state_param[1])
@@ -52,22 +51,20 @@ try:
     bs_query_3 = (bs_query_3.replace("{marital_status_param_1}", marital_param[0])
                   .replace("{marital_status_param_2}", marital_param[1])
                   .replace("{marital_status_param_3}", marital_param[2]))
-    print(education_param)
-    print(marital_param)
-    print(state_param)
-    print(bs_query_3)
+
+    with st.expander("**Show query**"):
+        st.code(bs_query_3)
+
+    button_clicked = st.button('Execute', key=1004)
+    if button_clicked:
+        df_3 = get_query_data(bs_query_3)
+        st.markdown(f"YAY! Here's your data :tada::sunglasses:")
+        st.table(df_3)
+    st.markdown("---")
 except IndexError as ie:
-    st.markdown(f":red[> Please select required number of options to generate a query. Error: {ie} :fearful:]",
+    st.markdown(f">:red[Please select required number of options to generate a query. Error: {ie}"
+                ":shocked_face_with_exploding_head::fearful:]",
                 unsafe_allow_html=True)
-except BaseException as e:
-    st.markdown(f">{e}")
-print(bs_query_3)
-
-with st.expander("**Show query**"):
-    st.write(bs_query_3)
-
-button_clicked = st.button('Execute', key=1004)
-if button_clicked:
-    df_3 = get_query_data(bs_query_3)
-    st.write(df_3)
-st.markdown("---")
+except Exception as e:
+    st.markdown(f">:red[An error occurred. Error: {e} :shocked_face_with_exploding_head::fearful:]",
+                unsafe_allow_html=True)
