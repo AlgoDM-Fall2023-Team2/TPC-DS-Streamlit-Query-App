@@ -21,7 +21,10 @@ try:
     button_clicked = st.button('Execute', key=1002)
     if button_clicked:
         df_5 = get_query_data(bs_query_5)
+        df_5.sort_values(by=["SUM(CS_SALES_PRICE)"], ascending=False, inplace=True)
+        st.bar_chart(data=df_5.iloc[0:20], x="ca_zip", y="SUM(CS_SALES_PRICE)", color="#ffaa0088")
         st.table(df_5)
+
     st.markdown("---")
 except Exception as e:
     st.markdown(f">:red[An error occurred. Error: {e} :shocked_face_with_exploding_head::fearful:]",
